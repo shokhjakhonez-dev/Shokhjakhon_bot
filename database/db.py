@@ -48,5 +48,19 @@ async def create_tables():
             payment_date TEXT
         )
         """)
-
+# Ishlar
+await db.execute("""
+CREATE TABLE IF NOT EXISTS orders (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    doctor TEXT,
+    student TEXT,
+    patient TEXT,
+    work TEXT,
+    price INTEGER,
+    paid INTEGER DEFAULT 0,
+    status TEXT DEFAULT 'Yangi',
+    deadline TEXT,
+    note TEXT
+)
+""")
         await db.commit()
