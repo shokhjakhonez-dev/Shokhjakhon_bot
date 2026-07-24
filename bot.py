@@ -1,9 +1,12 @@
+import asyncio
+
 from aiogram import Bot, Dispatcher
 from aiogram.filters import CommandStart
 from aiogram.types import Message
-import asyncio
 
 from config import TOKEN
+from keyboards.menu import main_menu
+from database.db import create_tables
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
@@ -12,17 +15,17 @@ dp = Dispatcher()
 @dp.message(CommandStart())
 async def start(message: Message):
     await message.answer(
-        "🦷 Shoxjaxon Lab Botga xush kelibsiz!\n\n"
-        "Bu bot orqali doktorlar, ishlar va to'lovlarni boshqarishingiz mumkin."
+        "🦷 Shoxjaxon Lab tizimiga xush kelibsiz!\n\n"
+        "Quyidagi menyudan kerakli bo'limni tanlang.",
+        reply_markup=main_menu
     )
 
 
 async def main():
+    await create_tables()
     await dp.start_polling(bot)
 
 
 if __name__ == "__main__":
     asyncio.run(main())
-TOKEN =  8697156844: AAExau5HVpzJbYp8RRS_2
-RbFj3KZKfI3p6I 
   
